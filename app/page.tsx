@@ -36,6 +36,10 @@ export default function Home() {
     }
   };
 
+  const handleEditClick = () => {
+    router.push('/edit/login');
+  };
+
   const handleSelect = () => {
     if (selectedRoulette) {
       // 중복 제거 옵션을 쿼리 파라미터로 전달
@@ -47,7 +51,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
       <div className="flex flex-col items-center">
-        <div className="bg-white rounded-lg shadow-xl p-8 w-full" style={{ minWidth: '450px', maxWidth: '550px' }}>
+        <div className="bg-white rounded-lg shadow-xl p-8 w-full relative" style={{ minWidth: '450px', maxWidth: '550px' }}>
+        {/* ルーレット編集 버튼 - 카드 오른쪽 위 */}
+        <button
+          onClick={handleEditClick}
+          className="absolute top-4 right-4 bg-white text-gray-700 px-3 py-2 rounded-lg shadow-md hover:bg-gray-100 transition-all duration-200 flex items-center justify-center"
+          title="ルーレット編集"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5271C20.3248 17.7679 20.3766 18.0245 20.3766 18.2833C20.3766 18.5422 20.3248 18.7988 20.2241 19.0396C20.1235 19.2804 19.976 19.501 19.79 19.6867L19.73 19.7467C19.5443 19.9327 19.3237 20.0802 19.0829 20.1809C18.8421 20.2815 18.5855 20.3333 18.3267 20.3333C18.0678 20.3333 17.8112 20.2815 17.5704 20.1809C17.3296 20.0802 17.109 19.9327 16.9233 19.7467L16.8633 19.6867C16.6276 19.4562 16.3283 19.3015 16.0039 19.2427C15.6795 19.1839 15.3449 19.2236 15.0433 19.3567C14.5756 19.559 14.1911 19.9076 13.9425 20.3495C13.6939 20.7915 13.5938 21.3022 13.6567 21.8067L13.6567 22H2.66667C2.31305 22 1.97391 21.8595 1.72386 21.6095C1.47381 21.3594 1.33333 21.0203 1.33333 20.6667V4.33333C1.33333 3.97971 1.47381 3.64057 1.72386 3.39052C1.97391 3.14048 2.31305 3 2.66667 3H18.6667C19.0203 3 19.3594 3.14048 19.6095 3.39052C19.8595 3.64057 20 3.97971 20 4.33333V13.3567C19.9962 13.4067 19.9962 13.4567 20 13.5067V13.5567L19.9967 13.6067C19.9338 14.1112 20.0339 14.622 20.2825 15.0639C20.5311 15.5059 20.9156 15.8545 21.3833 16.0567L19.4 15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <a
@@ -66,7 +81,7 @@ export default function Home() {
               />
             </a>
           </div>
-          <h1 className="text-3xl font-bold mb-2" style={{ color: '#00489D' }}>東横イン ルーレット</h1>
+          <h1 className="text-3xl font-bold mb-2" style={{ color: '#00489D' }}>東横ルーレット</h1>
         </div>
 
         {loading ? (
@@ -78,7 +93,7 @@ export default function Home() {
           <>
             <div className="mb-6">
               <label htmlFor="roulette-select" className="block text-sm font-medium text-gray-700 mb-2">
-                カテゴリー選択
+                ルーレット選択
               </label>
               <select
                 id="roulette-select"
@@ -86,7 +101,7 @@ export default function Home() {
                 onChange={(e) => setSelectedRoulette(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white text-gray-900"
               >
-                <option value="">カテゴリーを選択してください</option>
+                <option value="">ルーレットを選択してください</option>
                 {roulettes.map((roulette) => (
                   <option key={roulette._id} value={roulette.roulette_number}>
                     {roulette.roulette_name}
@@ -192,6 +207,7 @@ export default function Home() {
           </div>
         </div>
       )}
+
     </div>
   );
 }
