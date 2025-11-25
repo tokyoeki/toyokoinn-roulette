@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "東横インルーレット",
-  description: "東横インスタイルルーレット選択機",
+  title: "東横イン ルーレット",
+  description: "東横イン ルーレット",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
