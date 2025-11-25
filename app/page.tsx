@@ -158,7 +158,20 @@ export default function Home() {
             <button
               onClick={handleSelect}
               disabled={!selectedRoulette}
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] active:shadow-inner disabled:hover:scale-100 disabled:active:scale-100"
+              style={{
+                backgroundColor: !selectedRoulette ? undefined : '#3b82f6',
+              }}
+              onMouseEnter={(e) => {
+                if (!e.currentTarget.disabled) {
+                  e.currentTarget.style.backgroundColor = '#00489D';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!e.currentTarget.disabled) {
+                  e.currentTarget.style.backgroundColor = '#3b82f6';
+                }
+              }}
             >
               選択
             </button>
