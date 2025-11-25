@@ -280,17 +280,11 @@ export default function EditPage() {
 
   const fetchFullRoulettes = async () => {
     try {
-      const response = await fetch('/api/roulettes');
+      // 전체 데이터를 한 번에 가져오기
+      const response = await fetch('/api/roulettes?full=true');
       const result = await response.json();
       if (result.success) {
-        // 각 룰렛의 전체 데이터 가져오기
-        const fullDataPromises = result.data.map(async (roulette: Roulette) => {
-          const detailResponse = await fetch(`/api/roulettes/${roulette.roulette_number}`);
-          const detailResult = await detailResponse.json();
-          return detailResult.success ? detailResult.data : null;
-        });
-        const fullData = await Promise.all(fullDataPromises);
-        setFullRoulettes(fullData.filter((item: RouletteFullData | null) => item !== null));
+        setFullRoulettes(result.data);
       }
     } catch (error) {
       console.error('Error fetching full roulettes:', error);
