@@ -16,6 +16,7 @@ export default function Home() {
   const [noDuplicate, setNoDuplicate] = useState(false); // 중복 제거 토글 (기본값: OFF)
   const [loading, setLoading] = useState(true);
   const [showContactModal, setShowContactModal] = useState(false);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -165,15 +166,17 @@ export default function Home() {
               onMouseEnter={(e) => {
                 if (!e.currentTarget.disabled) {
                   e.currentTarget.style.backgroundColor = '#00489D';
+                  setIsButtonHovered(true);
                 }
               }}
               onMouseLeave={(e) => {
                 if (!e.currentTarget.disabled) {
                   e.currentTarget.style.backgroundColor = '#3b82f6';
+                  setIsButtonHovered(false);
                 }
               }}
-            >
-              選択
+              >
+              {isButtonHovered && selectedRoulette ? 'GO!' : '選択'}
             </button>
           </>
         )}
